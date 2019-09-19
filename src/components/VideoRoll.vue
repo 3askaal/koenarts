@@ -85,12 +85,12 @@ $videoRollWhite: darken(white, 10%);
 
   &:before {
     top: 0;
-    transform: translateY(-140%);
+    transform: translateY(-150%);
   }
 
   &:after {
     bottom: 0;
-    transform: translateY(140%);
+    transform: translateY(150%);
   }
 }
 </style>
