@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $white;
+  font-family: $body-fam;
+  line-height: 1.4;
+  font-size: 14px;
+  color: $text-dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.4s ease;
+  height: 100vh;
+
+  @include breakpoint($bp-m) {
+    font-size: 16px;
+  }
+}

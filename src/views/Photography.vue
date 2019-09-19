@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <h1>About</h1>
+    <h1>Photography</h1>
     <div v-html="content"></div>
   </Layout>
 </template>

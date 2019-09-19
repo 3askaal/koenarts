@@ -1,0 +1,21 @@
+.hide--mobile {
+  @include breakpoint(max $bp-m) {
+    display: none !important;
+  }
+}
+
+.hide--desktop {
+  @include breakpoint($bp-m) {
+    display: none !important;
+  }
+}
+
+@mixin show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@mixin hide {
+  opacity: 0;
+  pointer-events: none;
+}
