@@ -40,10 +40,10 @@ export default {
 
 .VideoRoll {
   display: flex;
-  padding: 80px 40px;
   background-color: $black;
   box-shadow: 0 0 30px 20px $black;
   border-radius: 30px;
+  padding: 80px 40px;
 }
 
 $videoRollWhite: darken(white, 10%);
@@ -56,8 +56,9 @@ $videoRollWhite: darken(white, 10%);
   iframe {
     border-radius: 30px;
     padding: 10px;
-    width: auto;
-    height: auto;
+    // height: 100%;
+    // height: auto;
+    // width: auto;
   }
 
   + .VideoRollItem {
@@ -84,12 +85,12 @@ $videoRollWhite: darken(white, 10%);
 
   &:before {
     top: 0;
-    transform: translateY(calc(-100% - 20px));
+    transform: translateY(-140%);
   }
 
   &:after {
     bottom: 0;
-    transform: translateY(calc(100% + 20px));
+    transform: translateY(140%);
   }
 }
 </style>
