@@ -1,14 +1,19 @@
 <template>
   <Layout background>
     <div class="Items">
-      <div class="Item" v-for="(item, index) in items" :key="index">
-        <router-link class="ItemArea" :to="item.name">
+      <div
+        class="Item"
+        v-for="(item, index) in items"
+        :key="index"
+        :class="{'fade-out': activeNavigationIndex !== null && activeNavigationIndex !== index}"
+      >
+        <div class="ItemArea" @click="navigate(item.name, index)">
           <span class="ItemCorner ItemCorner--topleft"></span>
           <span class="ItemCorner ItemCorner--topright"></span>
           <span class="ItemCorner ItemCorner--bottomleft"></span>
           <span class="ItemCorner ItemCorner--bottomright"></span>
           <strong class="bold">{{ capitalize(item.name) }}</strong>
-        </router-link>
+        </div>
         <div class="ItemImage" :style="{backgroundImage: `url(${item.image})`}" />
       </div>
     </div>
@@ -39,12 +44,20 @@ export default {
         { name: 'video', image: 'https://source.unsplash.com/random/2100x1100' },
         { name: 'graphics', image: 'https://source.unsplash.com/random/2200x1100' },
         { name: 'interactive', image: 'https://source.unsplash.com/random/2600x1400' }
-      ]
+      ],
+      activeNavigationIndex: null
     }
   },
   methods: {
     capitalize (value) {
       return capitalize(value)
+    },
+    navigate (name, index) {
+      this.activeNavigationIndex = index
+
+      setTimeout(() => {
+        this.$router.push(name)
+      }, 400)
     }
   }
 }
@@ -72,29 +85,36 @@ export default {
   width: 100%;
   height: 100%;
 
-  $gutter: 20;
+  opacity: 1;
+  transition: opacity 0.4s ease;
 
-  flex-basis: calc(25% - #{$gutter * 2}px);
+  &.fade-out {
+    opacity: 0;
+  }
 
   @include breakpoint(max $bp-m) {
+    $gutter: 20;
+
+    flex-basis: calc(25% - #{$gutter * 2}px);
+
     &:nth-of-type(1) .ItemImage {
       clip-path: inset(
-        calc(10% + #{$gutter}px) 30% calc(70% + #{$gutter}px) 30%
+        calc(10% + #{$gutter}px) 10% calc(70% + #{$gutter}px) 10%
       );
     }
     &:nth-of-type(2) .ItemImage {
       clip-path: inset(
-        calc(30% + #{$gutter}px) 30% calc(50% + #{$gutter}px) 30%
+        calc(30% + #{$gutter}px) 10% calc(50% + #{$gutter}px) 10%
       );
     }
     &:nth-of-type(3) .ItemImage {
       clip-path: inset(
-        calc(50% + #{$gutter}px) 30% calc(30% + #{$gutter}px) 30%
+        calc(50% + #{$gutter}px) 10% calc(30% + #{$gutter}px) 10%
       );
     }
     &:nth-of-type(4) .ItemImage {
       clip-path: inset(
-        calc(70% + #{$gutter}px) 30% calc(10% + #{$gutter}px) 30%
+        calc(70% + #{$gutter}px) 10% calc(10% + #{$gutter}px) 10%
       );
     }
   }
@@ -102,7 +122,6 @@ export default {
   @include breakpoint($bp-m) {
     $gutter: 40;
 
-    height: 100%;
     flex-basis: calc(25% - #{$gutter * 2}px);
 
     &:nth-of-type(1) .ItemImage {
@@ -134,7 +153,7 @@ export default {
   z-index: 200;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 100%;
   height: 100%;
   cursor: pointer;
 
@@ -162,6 +181,7 @@ export default {
   position: absolute;
   width: 20px;
   height: 20px;
+  border-radius: 1px;
 
   &.ItemCorner--topleft {
     top: 0;
@@ -204,6 +224,7 @@ export default {
   background-size: cover;
   background-position: center center;
   filter: grayscale(1);
+  opacity: 0.8;
   transition: all 0.4s ease;
 }
 </style>

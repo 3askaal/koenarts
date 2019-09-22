@@ -1,6 +1,6 @@
 <template>
   <div class="VideoRollWrapper">
-    <div class="VideoRoll">
+    <div class="VideoRoll" :class="{'is-playing': isPlaying !== null}">
       <div
         class="VideoRollItem"
         v-for="(item, index) in items"
@@ -11,7 +11,7 @@
           <VideoRollStrip />
         </div>
         <div class="VideoRollItemMiddle">
-          <!-- <Icon name="play" /> -->
+          <Icon name="play" />
           <div class="VideoRollItemMiddleWrapper">
             <img
               v-if="isPlaying !== index"
@@ -70,10 +70,15 @@ export default {
 .VideoRollItem {
   position: relative;
   width: 600px;
+  transition: all 0.4s ease;
+
+  .is-playing & {
+    width: 800px;
+  }
 }
 
 .VideoRollItemMiddle {
-  padding: 20px;
+  padding: 0 20px;
   background-color: $black;
 
   .Icon {
