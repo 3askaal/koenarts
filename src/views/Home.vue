@@ -5,7 +5,10 @@
         class="Item"
         v-for="(item, index) in items"
         :key="index"
-        :class="{'fade-out': activeNavigationIndex !== null && activeNavigationIndex !== index}"
+        :class="{
+          'fade-out': activeNavigationIndex !== null && activeNavigationIndex !== index,
+          'fade-out-later': activeNavigationIndex !== null && activeNavigationIndex === index,
+        }"
       >
         <div class="ItemArea" @click="navigate(item.name, index)">
           <span class="ItemCorner ItemCorner--topleft"></span>
@@ -57,7 +60,7 @@ export default {
 
       setTimeout(() => {
         this.$router.push(name)
-      }, 400)
+      }, 800)
     }
   }
 }
@@ -84,11 +87,20 @@ export default {
   overflow: hidden;
   width: 100%;
   height: 100%;
-
   opacity: 1;
-  transition: opacity 0.4s ease;
 
   &.fade-out {
+    transition-property: opacity;
+    transition-timing-function: ease;
+    transition-duration: 0.4s;
+    opacity: 0;
+  }
+
+  &.fade-out-later .ItemArea {
+    transition-property: opacity;
+    transition-timing-function: ease;
+    transition-duration: 0.4s;
+    transition-delay: 0.4s;
     opacity: 0;
   }
 

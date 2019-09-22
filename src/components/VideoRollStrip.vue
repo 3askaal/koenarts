@@ -11,7 +11,7 @@
       width="30"
       height="100%"
       mask="url(#hole)"
-      v-for="index in 30"
+      v-for="index in 50"
       :key="index"
       :style="{transform: `translateX(${(index - 1) * 30}px)`}"
     />

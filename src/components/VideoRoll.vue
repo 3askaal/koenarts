@@ -5,6 +5,7 @@
         class="VideoRollItem"
         v-for="(item, index) in items"
         :key="item"
+        :class="{'is-playing': isPlaying !== null && isPlaying === index}"
         @click="isPlaying === index ? isPlaying = null : isPlaying = index"
       >
         <div class="VideoRollItemTop">
@@ -69,11 +70,15 @@ export default {
 
 .VideoRollItem {
   position: relative;
-  width: 600px;
   transition: all 0.4s ease;
+  width: 80vw;
 
-  .is-playing & {
-    width: 800px;
+  @include breakpoint($bp-m) {
+    width: 40vw;
+  }
+
+  .VideoRoll.is-playing & {
+    width: 90vw;
   }
 }
 
@@ -87,9 +92,24 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
-    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    color: $white;
+    cursor: pointer;
+
+    svg {
+      width: 60px;
+      height: 60px;
+      background-color: $black;
+      padding: 10px;
+      border-radius: 100%;
+    }
+
+    .VideoRollItem.is-playing & {
+      display: none;
+    }
   }
 }
 
