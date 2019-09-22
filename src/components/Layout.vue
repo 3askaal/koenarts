@@ -1,8 +1,8 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="{backgroundImage: `url(${background})`}">
+    <Nav />
     <slot name="wrapper" />
     <div class="container" v-if="$slots.default">
-      <Nav />
       <slot />
     </div>
   </div>
@@ -24,7 +24,8 @@ export default {
   height: 100%;
   background-color: $dark;
   position: relative;
-  // padding: 40px;
+  background-position: center center;
+  background-size: cover;
 }
 
 .container {
@@ -34,7 +35,6 @@ export default {
   align-items: center;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   max-width: 80%;
 }
 

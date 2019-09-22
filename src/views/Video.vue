@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout background="https://source.unsplash.com/random/2100x1100">
     <VideoRoll slot="wrapper" :items="videos"></VideoRoll>
   </Layout>
 </template>

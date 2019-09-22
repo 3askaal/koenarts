@@ -11,7 +11,7 @@
           <VideoRollStrip />
         </div>
         <div class="VideoRollItemMiddle">
-          <Icon name="play" />
+          <!-- <Icon name="play" /> -->
           <div class="VideoRollItemMiddleWrapper">
             <img
               v-if="isPlaying !== index"
@@ -60,6 +60,7 @@ export default {
   align-items: center;
   overflow-x: scroll;
   padding-left: 200px;
+  padding-right: 200px;
 }
 
 .VideoRoll {
