@@ -1,29 +1,53 @@
 <template>
   <div class="VideoRollWrapper">
     <div class="VideoRoll">
-      <div class="VideoRollItem" v-for="(item, index) in items" :key="item">
-        <div :id="`video-${index}`"></div>
+      <div
+        class="VideoRollItem"
+        v-for="(item, index) in items"
+        :key="item"
+        @click="isPlaying === index ? isPlaying = null : isPlaying = index"
+      >
+        <div class="VideoRollItemTop">
+          <VideoRollStrip />
+        </div>
+        <div class="VideoRollItemMiddle">
+          <Icon name="play" />
+          <div class="VideoRollItemMiddleWrapper">
+            <img
+              v-if="isPlaying !== index"
+              :src="`https://img.youtube.com/vi/${item}/maxresdefault.jpg`"
+            />
+            <iframe
+              v-if="isPlaying === index"
+              width="560"
+              height="315"
+              :src="`https://www.youtube.com/embed/${item}?autoplay=1&controls=0`"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="VideoRollItemBottom">
+          <VideoRollStrip />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import YouTubePlayer from 'youtube-player'
+// import YTPlayer from 'yt-player'
 
 export default {
   props: ['items'],
+  data () {
+    return {
+      isPlaying: null
+    }
+  },
   mounted () {
-    const players = []
 
-    this.items.forEach((item, index) => {
-      const player = YouTubePlayer(`video-${index}`, {
-        videoId: item,
-        playerVars: { controls: 0 }
-      })
-
-      players.push(player)
-    })
   }
 }
 </script>
@@ -40,57 +64,63 @@ export default {
 
 .VideoRoll {
   display: flex;
-  background-color: $black;
-  // box-shadow: 0 0 30px 20px $black;
-  // border-radius: 30px;
-  padding: 60px 25px;
 }
-
-$videoRollWhite: darken(white, 10%);
 
 .VideoRollItem {
   position: relative;
-  background-color: $videoRollWhite;
-  border-radius: 20px;
+  width: 600px;
+}
 
-  iframe {
-    border-radius: 30px;
-    padding: 10px;
-    // height: 100%;
-    // height: auto;
-    // width: auto;
-  }
+.VideoRollItemMiddle {
+  padding: 20px;
+  background-color: $black;
 
-  + .VideoRollItem {
-    margin-left: 20px;
-  }
-
-  &:before,
-  &:after {
-    content: "";
+  .Icon {
     position: absolute;
-    height: 25px;
-    width: 100%;
+    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(
-      90deg,
-      $videoRollWhite,
-      $videoRollWhite 50%,
-      transparent 50%,
-      transparent 100%
-    );
-    background-size: 6% 100%;
+    width: 100%;
+    height: 100%;
+    margin: auto;
   }
+}
 
-  &:before {
+.VideoRollItemMiddleWrapper {
+  position: relative;
+  display: block;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  iframe {
+    position: absolute;
     top: 0;
-    transform: translateY(-160%);
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  &:after {
-    bottom: 0;
-    transform: translateY(160%);
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.VideoRollItemTop,
+.VideoRollItemBottom {
+  display: flex;
+
+  svg {
+    width: 100%;
+    flex-grow: 1;
   }
 }
 </style>

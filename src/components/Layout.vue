@@ -2,6 +2,7 @@
   <div class="wrapper">
     <slot name="wrapper" />
     <div class="container" v-if="$slots.default">
+      <Nav />
       <slot />
     </div>
   </div>
@@ -21,6 +22,9 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: $dark;
+  position: relative;
+  // padding: 40px;
 }
 
 .container {
@@ -28,11 +32,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 80%;
   width: 100%;
   height: 100%;
-  padding: 20px;
-  position: relative;
+  overflow: hidden;
+  max-width: 80%;
 }
 
 .content {

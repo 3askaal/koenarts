@@ -39,11 +39,13 @@ export default {
   justify-content: center;
   width: 40px;
   height: 40px;
+  // background-color: $white;
+  color: $white;
   z-index: 200;
-  margin: 40px;
   font-size: 3em;
   cursor: pointer;
   position: relative;
+  margin: 40px;
 
   &:hover .hamburger__text {
     opacity: 1;
