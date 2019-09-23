@@ -24,20 +24,8 @@
 </template>
 
 <script>
-import * as WPAPI from 'wpapi'
 import { capitalize } from 'lodash'
-
-const wp = new WPAPI({
-  endpoint: 'https://test56113140.wordpress.com/wp-json/wp/v2/posts'
-})
-
-wp.posts()
-  .then((data) => {
-    console.log(data)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+// const WPAPI = require('wpapi')
 
 export default {
   data () {
@@ -50,6 +38,19 @@ export default {
       ],
       activeNavigationIndex: null
     }
+  },
+  mounted () {
+    // const wp = new WPAPI({
+    //   endpoint: 'https://test56113140.wordpress.com/index.php/wp-json'
+    // })
+
+    // wp.posts()
+    //   .then((data) => {
+    //     console.log(data)
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
   },
   methods: {
     capitalize (value) {
@@ -111,22 +112,22 @@ export default {
 
     &:nth-of-type(1) .ItemImage {
       clip-path: inset(
-        calc(10% + #{$gutter}px) 10% calc(70% + #{$gutter}px) 10%
+        calc(20% + #{$gutter}px) 10% calc(65% + #{$gutter}px) 10%
       );
     }
     &:nth-of-type(2) .ItemImage {
       clip-path: inset(
-        calc(30% + #{$gutter}px) 10% calc(50% + #{$gutter}px) 10%
+        calc(35% + #{$gutter}px) 10% calc(50% + #{$gutter}px) 10%
       );
     }
     &:nth-of-type(3) .ItemImage {
       clip-path: inset(
-        calc(50% + #{$gutter}px) 10% calc(30% + #{$gutter}px) 10%
+        calc(50% + #{$gutter}px) 10% calc(35% + #{$gutter}px) 10%
       );
     }
     &:nth-of-type(4) .ItemImage {
       clip-path: inset(
-        calc(70% + #{$gutter}px) 10% calc(10% + #{$gutter}px) 10%
+        calc(65% + #{$gutter}px) 10% calc(20% + #{$gutter}px) 10%
       );
     }
   }

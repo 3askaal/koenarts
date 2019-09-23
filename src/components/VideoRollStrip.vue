@@ -1,20 +1,13 @@
 <template>
-  <svg width="300" height="60">
+  <svg class="Strip">
     <defs>
       <mask id="hole">
-        <rect width="10%" height="100%" fill="white" />
-        <rect rx="3" y="25%" x="10" width="2.5%" height="50%" fill="black" />
+        <rect class="StripOuter" width="100%" height="100%" fill="white" />
+        <rect rx="3" y="25%" x="25%" width="50%" height="50%" fill="black" />
       </mask>
     </defs>
 
-    <rect
-      width="30"
-      height="100%"
-      mask="url(#hole)"
-      v-for="index in 50"
-      :key="index"
-      :style="{transform: `translateX(${(index - 1) * 30}px)`}"
-    />
+    <rect width="100%" height="100%" mask="url(#hole)" />
   </svg>
 </template>
 
@@ -23,7 +16,16 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-svg {
+.Strip {
+  display: block;
   fill: $black;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+
+  .StripOuter {
+    flex-grow: 1;
+    width: 100%;
+  }
 }
 </style>

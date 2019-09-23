@@ -4,6 +4,9 @@
     <slot name="wrapper" />
     <div class="container" v-if="$slots.default">
       <slot />
+      <div class="content" v-if="$slots.content">
+        <slot name="content" />
+      </div>
     </div>
   </div>
 </template>
@@ -32,11 +35,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100%;
-  max-height: 80%;
+  max-height: 60%;
   max-width: 80%;
+
+  @include breakpoint($bp-m) {
+    max-height: 80%;
+  }
 }
 
 .content {

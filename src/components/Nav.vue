@@ -11,6 +11,8 @@
       <router-link to="/prizes" class="offcanvas__item">Prizes</router-link>
       <router-link to="/contact" class="offcanvas__item">Contact</router-link>
     </div>
+
+    <div class="logo">Koen Arts</div>
   </div>
 </template>
 
@@ -30,22 +32,27 @@ export default {
   top: 0;
   left: 0;
   right: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: center;
+  margin: 30px;
+  z-index: 300;
+
+  @include breakpoint($bp-m) {
+    margin: 60px;
+  }
 }
 
 .hamburger {
-  position: relative;
+  position: absolute;
   display: flex;
+  left: 0;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  // background-color: $white;
   color: $white;
-  z-index: 200;
   font-size: 3em;
   cursor: pointer;
-  position: relative;
-  margin: 40px;
 
   &:hover .hamburger__text {
     opacity: 1;
@@ -60,6 +67,11 @@ export default {
   opacity: 0;
   transform: translateX(0);
   transition: all 0.4s ease;
+}
+
+.logo {
+  font-family: $logo-fam;
+  font-size: 2.2em;
 }
 
 .offcanvas {
@@ -82,15 +94,13 @@ export default {
   transition: opacity 0.4s ease;
   color: white;
   font-size: 2em;
-  z-index: 100;
-  // transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
+  z-index: -1;
 
   &.is-open {
     opacity: 1;
     pointer-events: auto;
-    // transform: translateY(0%);
   }
 
   .offcanvas__item {

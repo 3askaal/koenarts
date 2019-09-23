@@ -9,7 +9,7 @@
         @click="isPlaying === index ? isPlaying = null : isPlaying = index"
       >
         <div class="VideoRollItemTop">
-          <VideoRollStrip />
+          <VideoRollStrip v-for="index in 20" :key="index" />
         </div>
         <div class="VideoRollItemMiddle">
           <Icon name="play" />
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="VideoRollItemBottom">
-          <VideoRollStrip />
+          <VideoRollStrip v-for="index in 20" :key="index" />
         </div>
       </div>
     </div>
@@ -59,13 +59,15 @@ export default {
   height: 100%;
   width: 100%;
   align-items: center;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding-left: 200px;
-  padding-right: 200px;
 }
 
 .VideoRoll {
   display: flex;
+  box-shadow: 0 0 50px 20px $black;
+  background-color: rgba($black, 0.6);
+  padding-right: 200px;
 }
 
 .VideoRollItem {
@@ -78,7 +80,11 @@ export default {
   }
 
   .VideoRoll.is-playing & {
-    width: 90vw;
+    width: 75vw;
+
+    @include breakpoint($bp-m) {
+      width: 60vw;
+    }
   }
 }
 
@@ -143,10 +149,5 @@ export default {
 .VideoRollItemTop,
 .VideoRollItemBottom {
   display: flex;
-
-  svg {
-    width: 100%;
-    flex-grow: 1;
-  }
 }
 </style>
