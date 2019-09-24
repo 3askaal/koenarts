@@ -1,56 +1,43 @@
 <template>
   <Layout background>
     <div class="Items">
-      <div
-        class="Item"
-        v-for="(item, index) in items"
-        :key="index"
-        :class="{
+      <template v-for="(item, index) in items">
+        <span class="Gutter" v-if="index" :key="'gutter' + index"></span>
+        <div
+          class="Item"
+          :key="index"
+          :class="{
           'fade-out': activeNavigationIndex !== null && activeNavigationIndex !== index,
           'fade-out-later': activeNavigationIndex !== null && activeNavigationIndex === index,
         }"
-      >
-        <div class="ItemArea" @click="navigate(item.name, index)">
-          <span class="ItemCorner ItemCorner--topleft"></span>
-          <span class="ItemCorner ItemCorner--topright"></span>
-          <span class="ItemCorner ItemCorner--bottomleft"></span>
-          <span class="ItemCorner ItemCorner--bottomright"></span>
-          <strong class="bold">{{ capitalize(item.name) }}</strong>
+        >
+          <div class="ItemArea" @click="navigate(item.name, index)">
+            <span class="ItemCorner ItemCorner--topleft"></span>
+            <span class="ItemCorner ItemCorner--topright"></span>
+            <span class="ItemCorner ItemCorner--bottomleft"></span>
+            <span class="ItemCorner ItemCorner--bottomright"></span>
+            <div class="bold">{{ capitalize(item.name) }}</div>
+          </div>
+          <div class="ItemImage" :style="{backgroundImage: `url(${item.image})`}" />
         </div>
-        <div class="ItemImage" :style="{backgroundImage: `url(${item.image})`}" />
-      </div>
+      </template>
     </div>
   </Layout>
 </template>
 
 <script>
 import { capitalize } from 'lodash'
-// const WPAPI = require('wpapi')
 
 export default {
   data () {
     return {
       items: [
-        { name: 'photography', image: 'https://source.unsplash.com/random/2000x1100' },
-        { name: 'video', image: 'https://source.unsplash.com/random/2100x1100' },
-        { name: 'graphics', image: 'https://source.unsplash.com/random/2200x1100' },
-        { name: 'interactive', image: 'https://source.unsplash.com/random/2600x1400' }
+        { name: 'photography', image: require('../assets/images/PhotographyH.jpg') },
+        { name: 'graphics', image: require('../assets/images/GraphicsH.png') },
+        { name: 'video', image: require('../assets/images/VideoH.jpg') }
       ],
       activeNavigationIndex: null
     }
-  },
-  mounted () {
-    // const wp = new WPAPI({
-    //   endpoint: 'https://test56113140.wordpress.com/index.php/wp-json'
-    // })
-
-    // wp.posts()
-    //   .then((data) => {
-    //     console.log(data)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
   },
   methods: {
     capitalize (value) {
@@ -68,17 +55,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$size: 60%;
+$padding: 30%;
+
+$colWidth: 10%;
+$gutterWidth: 5%;
+
+@function span($colIndex) {
+  @return $padding + ($colIndex * $colWidth) + ($colIndex * $gutterWidth);
+}
+
 .Items {
   display: flex;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  height: 100%;
+  width: 80%;
 
   @include breakpoint($bp-m) {
     flex-direction: row;
+    width: 100%;
+    height: 80%;
   }
+}
+
+.Gutter {
+  display: flex;
+  flex-basis: $gutterWidth;
+  border: 1px solid red;
 }
 
 .Item {
@@ -106,56 +111,32 @@ export default {
   }
 
   @include breakpoint(max $bp-m) {
-    $gutter: 20;
-
-    flex-basis: calc(25% - #{$gutter * 2}px);
+    flex-basis: $colWidth;
+    $x-padding: 10%;
 
     &:nth-of-type(1) .ItemImage {
-      clip-path: inset(
-        calc(20% + #{$gutter}px) 10% calc(65% + #{$gutter}px) 10%
-      );
+      clip-path: inset($padding $x-padding span(2) $x-padding);
     }
     &:nth-of-type(2) .ItemImage {
-      clip-path: inset(
-        calc(35% + #{$gutter}px) 10% calc(50% + #{$gutter}px) 10%
-      );
+      clip-path: inset(span(1) $x-padding span(1) $x-padding);
     }
     &:nth-of-type(3) .ItemImage {
-      clip-path: inset(
-        calc(50% + #{$gutter}px) 10% calc(35% + #{$gutter}px) 10%
-      );
-    }
-    &:nth-of-type(4) .ItemImage {
-      clip-path: inset(
-        calc(65% + #{$gutter}px) 10% calc(20% + #{$gutter}px) 10%
-      );
+      clip-path: inset(span(2) $x-padding $padding $x-padding);
     }
   }
 
   @include breakpoint($bp-m) {
-    $gutter: 40;
-
-    flex-basis: calc(25% - #{$gutter * 2}px);
+    flex-basis: $colWidth;
+    $y-padding: 30%;
 
     &:nth-of-type(1) .ItemImage {
-      clip-path: inset(
-        30% calc(70% + #{$gutter}px) 30% calc(10% + #{$gutter}px)
-      );
+      clip-path: inset($y-padding span(2) $y-padding $padding);
     }
     &:nth-of-type(2) .ItemImage {
-      clip-path: inset(
-        30% calc(50% + #{$gutter}px) 30% calc(30% + #{$gutter}px)
-      );
+      clip-path: inset($y-padding span(1) $y-padding span(1));
     }
     &:nth-of-type(3) .ItemImage {
-      clip-path: inset(
-        30% calc(30% + #{$gutter}px) 30% calc(50% + #{$gutter}px)
-      );
-    }
-    &:nth-of-type(4) .ItemImage {
-      clip-path: inset(
-        30% calc(10% + #{$gutter}px) 30% calc(70% + #{$gutter}px)
-      );
+      clip-path: inset($y-padding $padding $y-padding span(2));
     }
   }
 }

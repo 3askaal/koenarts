@@ -5,3 +5,30 @@
 
 $body-fam: 'Merriweather Sans', sans-serif;
 $logo-fam: 'Yesteryear', serif;
+
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('~@/assets/fonts/avenir/avenir-light-webfont.eot');
+    src: url('~@/assets/fonts/avenir/avenir-light-webfont.eot?#iefix') format('embedded-opentype'),
+            url('~@/assets/fonts/avenir/avenir-light-webfont.woff') format('woff'),
+            url('~@/assets/fonts/avenir/avenir-light-webfont.ttf') format('truetype'),
+            url('~@/assets/fonts/avenir/avenir-light-webfont.svg#avenir_lt_std45_book') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('~@/assets/fonts/avenir/avenir-roman-webfont.eot');
+    src: url('~@/assets/fonts/avenir/avenir-roman-webfont.eot?#iefix') format('embedded-opentype'),
+            url('~@/assets/fonts/avenir/avenir-roman-webfont.woff') format('woff'),
+            url('~@/assets/fonts/avenir/avenir-roman-webfont.ttf') format('truetype'),
+            url('~@/assets/fonts/avenir/avenir-roman-webfont.svg#avenir_lt_std45_book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+$logo-fam: 'Avenir', sans-serif;
+$body-fam: 'Avenir', sans-serif;

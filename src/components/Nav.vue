@@ -72,6 +72,7 @@ export default {
 .logo {
   font-family: $logo-fam;
   font-size: 2.2em;
+  font-weight: 300;
 }
 
 .offcanvas {
@@ -93,7 +94,7 @@ export default {
   );
   transition: opacity 0.4s ease;
   color: white;
-  font-size: 2em;
+  font-size: 1.4em;
   opacity: 0;
   pointer-events: none;
   z-index: -1;
@@ -103,8 +104,8 @@ export default {
     pointer-events: auto;
   }
 
-  .offcanvas__item {
-    margin-bottom: 20px;
+  .offcanvas__item + .offcanvas__item {
+    margin-top: 40px;
   }
 }
 </style>
