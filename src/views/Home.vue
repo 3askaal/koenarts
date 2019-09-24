@@ -83,7 +83,6 @@ $gutterWidth: 5%;
 .Gutter {
   display: flex;
   flex-basis: $gutterWidth;
-  border: 1px solid red;
 }
 
 .Item {
