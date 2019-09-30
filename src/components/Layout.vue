@@ -2,7 +2,7 @@
   <div class="wrapper" :style="{backgroundImage: `url(${background})`}">
     <Nav />
     <slot name="wrapper" />
-    <div class="container" v-if="$slots.default">
+    <div class="container" v-if="$slots.default || $slots.content">
       <slot />
       <div class="content" v-if="$slots.content">
         <slot name="content" />
@@ -34,17 +34,18 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80%;
   max-width: 480px;
 
   @include breakpoint(max $bp-m) {

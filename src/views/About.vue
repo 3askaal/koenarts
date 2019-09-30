@@ -1,7 +1,11 @@
 <template>
   <Layout>
-    <h1>About</h1>
-    <div v-html="content"></div>
+    <template slot="content">
+      <div>
+        <h1>About</h1>
+        <div v-html="content"></div>
+      </div>
+    </template>
   </Layout>
 </template>
 

@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
-@import url('https://fonts.googleapis.com/css?family=Yesteryear&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans&display=swap');
-
-
-$body-fam: 'Merriweather Sans', sans-serif;
-$logo-fam: 'Yesteryear', serif;
-
+@import url('https://fonts.googleapis.com/css?family=Gochi+Hand');
 
 @font-face {
     font-family: 'Avenir';
@@ -29,6 +22,6 @@ $logo-fam: 'Yesteryear', serif;
     font-style: normal;
 }
 
-
 $logo-fam: 'Avenir', sans-serif;
 $body-fam: 'Avenir', sans-serif;
+$handwriting-font: 'Gochi Hand', Helvetica, Arial, sans-serif;

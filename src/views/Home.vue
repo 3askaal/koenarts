@@ -1,27 +1,29 @@
 <template>
   <Layout background>
-    <div class="Items">
-      <template v-for="(item, index) in items">
-        <span class="Gutter" v-if="index" :key="'gutter' + index"></span>
-        <div
-          class="Item"
-          :key="index"
-          :class="{
+    <template slot="wrapper">
+      <div class="Items">
+        <template v-for="(item, index) in items">
+          <span class="Gutter" v-if="index" :key="'gutter' + index"></span>
+          <div
+            class="Item"
+            :key="index"
+            :class="{
           'fade-out': activeNavigationIndex !== null && activeNavigationIndex !== index,
           'fade-out-later': activeNavigationIndex !== null && activeNavigationIndex === index,
         }"
-        >
-          <div class="ItemArea" @click="navigate(item.name, index)">
-            <span class="ItemCorner ItemCorner--topleft"></span>
-            <span class="ItemCorner ItemCorner--topright"></span>
-            <span class="ItemCorner ItemCorner--bottomleft"></span>
-            <span class="ItemCorner ItemCorner--bottomright"></span>
-            <div class="bold">{{ capitalize(item.name) }}</div>
+          >
+            <div class="ItemArea" @click="navigate(item.name, index)">
+              <span class="ItemCorner ItemCorner--topleft"></span>
+              <span class="ItemCorner ItemCorner--topright"></span>
+              <span class="ItemCorner ItemCorner--bottomleft"></span>
+              <span class="ItemCorner ItemCorner--bottomright"></span>
+              <div class="bold">{{ capitalize(item.name) }}</div>
+            </div>
+            <div class="ItemImage" :style="{backgroundImage: `url(${item.image})`}" />
           </div>
-          <div class="ItemImage" :style="{backgroundImage: `url(${item.image})`}" />
-        </div>
-      </template>
-    </div>
+        </template>
+      </div>
+    </template>
   </Layout>
 </template>
 
@@ -56,9 +58,9 @@ export default {
 
 <style lang="scss" scoped>
 $size: 60%;
-$padding: 30%;
+$padding: 15%;
 
-$colWidth: 10%;
+$colWidth: 20%;
 $gutterWidth: 5%;
 
 @function span($colIndex) {
@@ -114,13 +116,13 @@ $gutterWidth: 5%;
     $x-padding: 10%;
 
     &:nth-of-type(1) .ItemImage {
-      clip-path: inset($padding $x-padding span(2) $x-padding);
+      clip-path: inset(span(0) $x-padding span(2) $x-padding);
     }
     &:nth-of-type(2) .ItemImage {
       clip-path: inset(span(1) $x-padding span(1) $x-padding);
     }
     &:nth-of-type(3) .ItemImage {
-      clip-path: inset(span(2) $x-padding $padding $x-padding);
+      clip-path: inset(span(2) $x-padding span(0) $x-padding);
     }
   }
 
@@ -129,13 +131,13 @@ $gutterWidth: 5%;
     $y-padding: 30%;
 
     &:nth-of-type(1) .ItemImage {
-      clip-path: inset($y-padding span(2) $y-padding $padding);
+      clip-path: inset($y-padding span(2) $y-padding span(0));
     }
     &:nth-of-type(2) .ItemImage {
       clip-path: inset($y-padding span(1) $y-padding span(1));
     }
     &:nth-of-type(3) .ItemImage {
-      clip-path: inset($y-padding $padding $y-padding span(2));
+      clip-path: inset($y-padding span(0) $y-padding span(2));
     }
   }
 }

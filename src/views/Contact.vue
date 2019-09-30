@@ -1,7 +1,9 @@
 <template>
   <Layout>
-    <h1>Contact</h1>
-    <div v-html="content"></div>
+    <div slot="content">
+      <h1>Contact</h1>
+      <div v-html="content"></div>
+    </div>
   </Layout>
 </template>
 
