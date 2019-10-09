@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: $white;
   font-family: $body-fam;
@@ -11,7 +16,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: all 0.4s ease;
-  height: 100%;
 
   @include breakpoint($bp-m) {
     font-size: 16px;
