@@ -1,6 +1,11 @@
 <template>
-  <div class="wrapper" :style="{backgroundImage: `url(${background})`}">
-    <Nav />
+  <div class="wrapper">
+    <div
+      class="LayoutBackground"
+      v-if="background"
+      :style="{backgroundImage: `url(${background})`}"
+    />
+    <Header />
     <slot name="wrapper" />
     <div class="container" v-if="$slots.default || $slots.content">
       <slot />
@@ -13,8 +18,8 @@
 
 <script>
 export default {
-  props: ['background']
-}
+  props: ["background"]
+};
 </script>
 
 <style lang="scss" scoped>
@@ -27,19 +32,42 @@ export default {
   height: 100%;
   background-color: $dark;
   position: relative;
-  background-position: center center;
+}
+
+.LayoutBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   background-size: cover;
+  background-position: center center;
+  z-index: 0;
+  // filter: blur(2px);
+
+  // &:before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   background-color: rgba(black, 0.4);
+  // }
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
   padding-left: 20px;
   padding-right: 20px;
+  overflow: auto;
 }
 
 .content {
@@ -47,9 +75,12 @@ export default {
   flex-direction: column;
   align-items: center;
   max-width: 480px;
+  padding-top: 100px;
+  padding-left: 40px;
+  padding-right: 40px;
 
-  @include breakpoint(max $bp-m) {
-    padding-top: 90px;
+  @include breakpoint($bp-m) {
+    padding-top: 140px;
   }
 }
 </style>

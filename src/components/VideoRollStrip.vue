@@ -3,7 +3,7 @@
     <defs>
       <mask id="hole">
         <rect class="StripOuter" width="100%" height="100%" fill="white" />
-        <rect rx="3" y="25%" x="25%" width="50%" height="50%" fill="black" />
+        <rect rx="2" y="25%" x="50%" width="50%" height="50%" fill="black" />
       </mask>
     </defs>
 
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -20,7 +20,7 @@ export default {}
   display: block;
   fill: $black;
   width: 100%;
-  height: 80px;
+  height: 40px;
   overflow: hidden;
 
   .StripOuter {

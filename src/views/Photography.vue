@@ -26,23 +26,23 @@
 </template>
 
 <script>
-import { sample, random } from 'lodash'
+import { sample, random } from "lodash";
 
 export default {
   // props: ['content']
-  data () {
+  data() {
     return {
       content:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga?'
-    }
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga?"
+    };
   },
   methods: {
-    genRandomRotation () {
-      const isMinus = sample([true, false])
-      return isMinus ? `-${random(2, 8)}deg` : `${random(2, 8)}deg`
+    genRandomRotation() {
+      const isMinus = sample([true, false]);
+      return isMinus ? `-${random(2, 3)}deg` : `${random(2, 3)}deg`;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -50,7 +50,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 70%;
+  width: 100%;
   margin-top: 140px;
   margin-bottom: 100px;
 
@@ -64,17 +64,20 @@ export default {
   flex-shrink: 1;
   background-color: $white;
   box-shadow: 0 0 20px 10px rgba(black, 0.2);
-  margin-bottom: 40px;
+  margin-bottom: 10px;
+  max-width: 50%;
 
   @include breakpoint($bp-m) {
+    margin-bottom: 20px;
+
     + .Polaroid {
-      margin-left: 60px;
+      margin-left: 20px;
     }
   }
 }
 
 .PolaroidImage {
-  max-width: 150px;
+  width: 100%;
   box-shadow: inset 0 0 20px 10px rgba(black, 0.2);
 
   @include breakpoint($bp-m) {

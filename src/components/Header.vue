@@ -18,12 +18,12 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       isOpen: false
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -72,7 +72,7 @@ export default {
 .logo {
   font-family: $logo-fam;
   font-size: 2.2em;
-  font-weight: 300;
+  font-weight: 800;
 }
 
 .offcanvas {

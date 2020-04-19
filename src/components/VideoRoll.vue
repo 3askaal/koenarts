@@ -22,9 +22,8 @@
               v-if="isPlaying === index"
               width="560"
               height="315"
-              :src="`https://www.youtube.com/embed/${item}?autoplay=1&controls=0`"
+              :src="`https://www.youtube.com/embed/${item}?autoplay=1&mute=1&controls=0`"
               frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe>
           </div>
@@ -41,33 +40,41 @@
 // import YTPlayer from 'yt-player'
 
 export default {
-  props: ['items'],
-  data () {
+  props: ["items"],
+  data() {
     return {
       isPlaying: null
-    }
+    };
   },
-  mounted () {
-
-  }
-}
+  mounted() {}
+};
 </script>
 
 <style lang="scss">
+@keyframes slideIn {
+  from {
+    padding-left: 100vw;
+  }
+  to {
+    padding-left: 10vw;
+  }
+}
+
 .VideoRollWrapper {
   display: flex;
   height: 100%;
   width: 100%;
   align-items: center;
-  overflow-x: auto;
-  padding-left: 200px;
+  z-index: 100;
+  overflow: auto;
+  animation: slideIn 0.4s ease 1s forwards;
+  padding-left: 100vw;
 }
 
 .VideoRoll {
   display: flex;
-  box-shadow: 0 0 50px 20px $black;
-  background-color: rgba($black, 0.6);
-  padding-right: 200px;
+  box-shadow: 0 0 50px 20px rgba($black, 0.8);
+  border-radius: 2px;
 }
 
 .VideoRollItem {
@@ -89,7 +96,7 @@ export default {
 }
 
 .VideoRollItemMiddle {
-  padding: 0 20px;
+  // padding-left: 20px;
   background-color: $black;
 
   .Icon {
@@ -109,7 +116,7 @@ export default {
       width: 60px;
       height: 60px;
       background-color: $black;
-      padding: 10px;
+      padding: 20px;
       border-radius: 100%;
     }
 
