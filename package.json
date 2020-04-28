@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "compress:images": "npm run compress:images:clean && npm run compress:images:small && npm run compress:images:medium && npm run compress:images:large",
