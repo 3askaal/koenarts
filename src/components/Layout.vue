@@ -1,15 +1,15 @@
 <template>
-  <div class="wrapper">
-    <div
-      class="LayoutBackground"
-      v-if="background"
-      :style="{backgroundImage: `url(${background})`}"
-    />
+  <div class="LayoutWrapper">
+    <picture class="LayoutBackground" v-if="background">
+      <source media="(min-width: 800px)" :srcset="require(`../assets/images/large/${background}.jpg`)" />
+      <source media="(min-width: 640px)" :srcset="require(`../assets/images/medium/${background}.jpg`)" />
+      <img :src="require(`../assets/images/small/${background}.jpg`)" alt="" />
+    </picture>
     <Header />
     <slot name="wrapper" />
-    <div class="container" v-if="$slots.default || $slots.content">
+    <div class="LayoutContainer" v-if="$slots.default || $slots.content">
       <slot />
-      <div class="content" v-if="$slots.content">
+      <div class="LayoutContent" v-if="$slots.content">
         <slot name="content" />
       </div>
     </div>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
+.LayoutWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,7 +59,7 @@ export default {
   // }
 }
 
-.container {
+.LayoutContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,7 +70,7 @@ export default {
   overflow: auto;
 }
 
-.content {
+.LayoutContent {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout :background="background">
     <div class="Polaroids">
       <div class="Polaroid" :style="{ transform: `rotate(${genRandomRotation()})` }">
         <img class="PolaroidImage" :src="'http://placeimg.com/200/300/animals'" />

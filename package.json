@@ -13,7 +13,11 @@
     "compress:images:large": "mogrify -resize 1920 -path ./src/assets/images/large -format jpg ./src/images/*"
   },
   "dependencies": {
+    "@vue/eslint-config-airbnb": "^5.0.2",
     "core-js": "^2.6.5",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
     "feather-icons": "^4.24.1",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.10",

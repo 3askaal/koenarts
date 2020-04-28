@@ -37,8 +37,6 @@
 </template>
 
 <script>
-// import YTPlayer from 'yt-player'
-
 export default {
   props: ['items'],
   data () {
@@ -73,7 +71,7 @@ export default {
 
 .VideoRoll {
   display: flex;
-  box-shadow: 0 0 50px 20px rgba($black, 0.8);
+  box-shadow: 0 0 20px 10px rgba($black, 0.8);
   border-radius: 2px;
 }
 
@@ -96,7 +94,6 @@ export default {
 }
 
 .VideoRollItemMiddle {
-  // padding-left: 20px;
   background-color: $black;
 
   .Icon {

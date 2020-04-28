@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ["standard", "plugin:vue/essential", "@vue/standard"],
+  extends: ["airbnb", "plugin:vue/essential", "@vue/eslint-config-airbnb"],
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
