@@ -36,53 +36,53 @@
 </template>
 
 <script>
-import { capitalize } from "lodash";
+import { capitalize } from 'lodash'
 
 export default {
-  data() {
+  data () {
     return {
       items: [
         {
-          name: "photography",
+          name: 'photography',
           images: {
-            s: require("../assets/images/small/PhotographyH.jpg"),
-            m: require("../assets/images/medium/PhotographyH.jpg"),
-            l: require("../assets/images/large/PhotographyH.jpg")
+            s: require('../assets/images/small/PhotographyH.jpg'),
+            m: require('../assets/images/medium/PhotographyH.jpg'),
+            l: require('../assets/images/large/PhotographyH.jpg')
           }
         },
         {
-          name: "graphics",
+          name: 'graphics',
           images: {
-            s: require("../assets/images/small/GraphicsH.jpg"),
-            m: require("../assets/images/medium/GraphicsH.jpg"),
-            l: require("../assets/images/large/GraphicsH.jpg")
+            s: require('../assets/images/small/GraphicsH.jpg'),
+            m: require('../assets/images/medium/GraphicsH.jpg'),
+            l: require('../assets/images/large/GraphicsH.jpg')
           }
         },
         {
-          name: "video",
+          name: 'video',
           images: {
-            s: require("../assets/images/small/VideoH.jpg"),
-            m: require("../assets/images/medium/VideoH.jpg"),
-            l: require("../assets/images/large/VideoH.jpg")
+            s: require('../assets/images/small/VideoH.jpg'),
+            m: require('../assets/images/medium/VideoH.jpg'),
+            l: require('../assets/images/large/VideoH.jpg')
           }
         }
       ],
       activeNavigationIndex: null
-    };
+    }
   },
   methods: {
-    capitalize(value) {
-      return capitalize(value);
+    capitalize (value) {
+      return capitalize(value)
     },
-    navigate(name, index) {
-      this.activeNavigationIndex = index;
+    navigate (name, index) {
+      this.activeNavigationIndex = index
 
       setTimeout(() => {
-        this.$router.push(name);
-      }, 800);
+        this.$router.push(name)
+      }, 800)
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

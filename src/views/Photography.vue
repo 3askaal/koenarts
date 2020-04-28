@@ -26,23 +26,23 @@
 </template>
 
 <script>
-import { sample, random } from "lodash";
+import { sample, random } from 'lodash'
 
 export default {
   // props: ['content']
-  data() {
+  data () {
     return {
       content:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga?"
-    };
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora harum doloremque adipisci eos pariatur blanditiis dicta impedit molestias et deserunt commodi, rem temporibus cumque quisquam ullam vitae quos eaque fuga?'
+    }
   },
   methods: {
-    genRandomRotation() {
-      const isMinus = sample([true, false]);
-      return isMinus ? `-${random(2, 3)}deg` : `${random(2, 3)}deg`;
+    genRandomRotation () {
+      const isMinus = sample([true, false])
+      return isMinus ? `-${random(2, 3)}deg` : `${random(2, 3)}deg`
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

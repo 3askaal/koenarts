@@ -18,12 +18,12 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       isOpen: false
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

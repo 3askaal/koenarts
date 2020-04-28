@@ -18,8 +18,8 @@
 
 <script>
 export default {
-  props: ["background"]
-};
+  props: ['background']
+}
 </script>
 
 <style lang="scss" scoped>

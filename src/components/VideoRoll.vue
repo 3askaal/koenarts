@@ -40,14 +40,14 @@
 // import YTPlayer from 'yt-player'
 
 export default {
-  props: ["items"],
-  data() {
+  props: ['items'],
+  data () {
     return {
       isPlaying: null
-    };
+    }
   },
-  mounted() {}
-};
+  mounted () {}
+}
 </script>
 
 <style lang="scss">
