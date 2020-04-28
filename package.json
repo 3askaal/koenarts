@@ -5,7 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "compress:images": "npm run compress:images:clean && npm run compress:images:small && npm run compress:images:medium && npm run compress:images:large",
+    "compress:images:clean": "rm -rf ./src/assets/images/small/* && rm -rf ./src/assets/images/medium/* && rm -rf ./src/assets/images/large/*",
+    "compress:images:small": "mogrify -resize 960x960^ -crop 640x960^+0+0 -gravity Center -path ./src/assets/images/small -format jpg ./src/images/*",
+    "compress:images:medium": "mogrify -resize 1280x1280^ -crop 800x1280^+0+0 -gravity Center -path ./src/assets/images/medium -format jpg ./src/images/*",
+    "compress:images:large": "mogrify -resize 1920 -path ./src/assets/images/large -format jpg ./src/images/*"
   },
   "dependencies": {
     "core-js": "^2.6.5",

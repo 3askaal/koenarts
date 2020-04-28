@@ -8,9 +8,13 @@
             class="Item"
             :key="index"
             :class="{
-          'fade-out': activeNavigationIndex !== null && activeNavigationIndex !== index,
-          'fade-out-later': activeNavigationIndex !== null && activeNavigationIndex === index,
-        }"
+              'fade-out':
+                activeNavigationIndex !== null &&
+                activeNavigationIndex !== index,
+              'fade-out-later':
+                activeNavigationIndex !== null &&
+                activeNavigationIndex === index
+            }"
           >
             <div class="ItemArea" @click="navigate(item.name, index)">
               <span class="ItemCorner ItemCorner--topleft"></span>
@@ -19,7 +23,11 @@
               <span class="ItemCorner ItemCorner--bottomright"></span>
               <div class="bold">{{ capitalize(item.name) }}</div>
             </div>
-            <div class="ItemImage" :style="{backgroundImage: `url(${item.image})`}" />
+            <picture class="ItemImage">
+              <source media="(min-width: 800px)" :srcset="item.images.l" />
+              <source media="(min-width: 640px)" :srcset="item.images.m" />
+              <img :src="item.images.s" alt="" />
+            </picture>
           </div>
         </template>
       </div>
@@ -28,32 +36,53 @@
 </template>
 
 <script>
-import { capitalize } from 'lodash'
+import { capitalize } from "lodash";
 
 export default {
-  data () {
+  data() {
     return {
       items: [
-        { name: 'photography', image: require('../assets/images/PhotographyH.jpg') },
-        { name: 'graphics', image: require('../assets/images/GraphicsH.png') },
-        { name: 'video', image: require('../assets/images/VideoH.jpg') }
+        {
+          name: "photography",
+          images: {
+            s: require("../assets/images/small/PhotographyH.jpg"),
+            m: require("../assets/images/medium/PhotographyH.jpg"),
+            l: require("../assets/images/large/PhotographyH.jpg")
+          }
+        },
+        {
+          name: "graphics",
+          images: {
+            s: require("../assets/images/small/GraphicsH.jpg"),
+            m: require("../assets/images/medium/GraphicsH.jpg"),
+            l: require("../assets/images/large/GraphicsH.jpg")
+          }
+        },
+        {
+          name: "video",
+          images: {
+            s: require("../assets/images/small/VideoH.jpg"),
+            m: require("../assets/images/medium/VideoH.jpg"),
+            l: require("../assets/images/large/VideoH.jpg")
+          }
+        }
       ],
       activeNavigationIndex: null
-    }
+    };
   },
   methods: {
-    capitalize (value) {
-      return capitalize(value)
+    capitalize(value) {
+      return capitalize(value);
     },
-    navigate (name, index) {
-      this.activeNavigationIndex = index
+    navigate(name, index) {
+      this.activeNavigationIndex = index;
 
       setTimeout(() => {
-        this.$router.push(name)
-      }, 800)
+        this.$router.push(name);
+      }, 800);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -216,10 +245,13 @@ $gutterWidth: 5%;
   width: 100%;
   height: 100%;
   z-index: 100;
-  background-size: cover;
-  background-position: center center;
   filter: grayscale(1);
   opacity: 0.8;
   transition: all 0.4s ease;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
 }
 </style>
