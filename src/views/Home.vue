@@ -24,9 +24,9 @@
               <div class="bold">{{ capitalize(item.name) }}</div>
             </div>
             <picture class="ItemImage">
-              <source media="(min-width: 800px)" :srcset="item.images.l" />
-              <source media="(min-width: 640px)" :srcset="item.images.m" />
-              <img :src="item.images.s" alt="" />
+              <source media="(min-width: 800px)" :srcset="require(`../assets/images/large/${item.image}.jpg`)" />
+              <source media="(min-width: 640px)" :srcset="require(`../assets/images/medium/${item.image}.jpg`)" />
+              <img :src="require(`../assets/images/small/${item.image}.jpg`)" alt="" />
             </picture>
           </div>
         </template>
@@ -44,27 +44,15 @@ export default {
       items: [
         {
           name: 'photography',
-          images: {
-            s: require('../assets/images/small/PhotographyH.jpg'),
-            m: require('../assets/images/medium/PhotographyH.jpg'),
-            l: require('../assets/images/large/PhotographyH.jpg')
-          }
+          image: 'PhotographyH'
         },
         {
           name: 'graphics',
-          images: {
-            s: require('../assets/images/small/GraphicsH.jpg'),
-            m: require('../assets/images/medium/GraphicsH.jpg'),
-            l: require('../assets/images/large/GraphicsH.jpg')
-          }
+          image: 'GraphicsH'
         },
         {
           name: 'video',
-          images: {
-            s: require('../assets/images/small/VideoH.jpg'),
-            m: require('../assets/images/medium/VideoH.jpg'),
-            l: require('../assets/images/large/VideoH.jpg')
-          }
+          image: 'VideoH'
         }
       ],
       activeNavigationIndex: null
