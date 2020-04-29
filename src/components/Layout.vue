@@ -46,6 +46,13 @@ export default {
   background-size: cover;
   background-position: center center;
   z-index: 0;
+
+  img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
   // filter: blur(2px);
 
   // &:before {
