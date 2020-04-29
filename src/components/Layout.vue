@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <div
-      class="LayoutBackground"
-      v-if="background"
-      :style="{backgroundImage: `url(${background})`}"
-    />
+    <picture class="LayoutBackground" v-if="background">
+      <source media="(min-width: 800px)" :srcset="require(`../assets/images/large/${background}.jpg`)" />
+      <source media="(min-width: 640px)" :srcset="require(`../assets/images/medium/${background}.jpg`)" />
+      <img :src="require(`../assets/images/small/${background}.jpg`)" alt="" />
+    </picture>
     <Header />
     <slot name="wrapper" />
     <div class="container" v-if="$slots.default || $slots.content">
@@ -53,17 +53,6 @@ export default {
     object-fit: cover;
     object-position: center center;
   }
-  // filter: blur(2px);
-
-  // &:before {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   background-color: rgba(black, 0.4);
-  // }
 }
 
 .container {
