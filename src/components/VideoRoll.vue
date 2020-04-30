@@ -53,10 +53,10 @@ export default {
 <style lang="scss">
 @keyframes slideIn {
   from {
-    padding-left: 100vw;
+    transform: translateX(140vw);
   }
   to {
-    padding-left: 10vw;
+    transform: translateX(0);
   }
 }
 
@@ -66,14 +66,19 @@ export default {
   width: 100%;
   align-items: center;
   z-index: 100;
-  overflow: auto;
-  animation: slideIn 0.4s ease 1s forwards;
-  padding-left: 100vw;
+  overflow: scroll;
+  animation: slideIn 1s ease-out .25s forwards;
+  transform: translateX(140vw);
+  padding: 5vw;
+
+  @include breakpoint($bp-m) {
+    width: 8vw;
+  }
 }
 
 .VideoRoll {
   display: flex;
-  box-shadow: 0 0 50px 20px rgba($black, 0.8);
+  // box-shadow: 0 0 50px 20px rgba($black, 0.8);
   border-radius: 2px;
 }
 
@@ -87,7 +92,7 @@ export default {
   }
 
   .VideoRoll.is-playing & {
-    width: 75vw;
+    width: 100vw;
 
     @include breakpoint($bp-m) {
       width: 60vw;

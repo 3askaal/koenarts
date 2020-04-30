@@ -234,7 +234,7 @@ $gutterWidth: 5%;
   height: 100%;
   z-index: 100;
   filter: grayscale(1);
-  opacity: 0.8;
+  opacity: 0.75;
   transition: all 0.4s ease;
   overflow: hidden;
 

@@ -25,7 +25,7 @@ export default {}
 
   .StripOuter {
     flex-grow: 1;
-    width: 100%;
+    width: 200%;
   }
 }
 </style>

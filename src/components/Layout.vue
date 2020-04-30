@@ -46,6 +46,7 @@ export default {
   background-size: cover;
   background-position: center center;
   z-index: 0;
+  opacity: 0.75;
 
   img {
     min-width: 100%;
@@ -53,6 +54,16 @@ export default {
     object-fit: cover;
     object-position: center center;
   }
+
+  // &:after {
+  //   content: '';
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   background-color: white;
+  //   opacity:
+  // }
 }
 
 .container {
