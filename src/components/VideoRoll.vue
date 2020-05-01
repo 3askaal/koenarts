@@ -72,7 +72,7 @@ export default {
   padding: 5vw;
 
   @include breakpoint($bp-m) {
-    width: 8vw;
+    padding: 8vw;
   }
 }
 
