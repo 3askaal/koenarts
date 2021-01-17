@@ -4,6 +4,7 @@ import PhotographyPage from './Photography'
 import VideoPage from './Video'
 import GraphicsPage from './Graphics'
 import InteractivePage from './Interactive'
+import FountainPage from './Fountain'
 
 import AboutPage from './About'
 import PrizesPage from './Prizes'
@@ -15,6 +16,7 @@ export {
   VideoPage,
   GraphicsPage,
   InteractivePage,
+  FountainPage,
   AboutPage,
   PrizesPage,
   ContactPage

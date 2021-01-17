@@ -7,17 +7,21 @@
     </div>
 
     <div class="offcanvas" :class="{'is-open': isOpen}">
+      <router-link to="/" class="offcanvas__item">Home</router-link>
       <router-link to="/about" class="offcanvas__item">About me</router-link>
       <router-link to="/prizes" class="offcanvas__item">Prizes</router-link>
       <router-link to="/contact" class="offcanvas__item">Contact</router-link>
     </div>
 
-    <div class="logo">Koen Arts</div>
+    <div class="logo" v-if="hasLogo">Koen Arts</div>
   </div>
 </template>
 
 <script>
 export default {
+  props: [
+    'hasLogo'
+  ],
   data () {
     return {
       isOpen: false

@@ -3,9 +3,9 @@
     <picture class="LayoutBackground" v-if="background">
       <source media="(min-width: 800px)" :srcset="require(`../assets/images/large/${background}.jpg`)" />
       <source media="(min-width: 640px)" :srcset="require(`../assets/images/medium/${background}.jpg`)" />
-      <img :src="require(`../assets/images/small/${background}.jpg`)" alt="" />
+      <img :src="require(`../assets/images/small/${background}.jpg`)" :style="{ objectPosition: backgroundPosition }" alt="" />
     </picture>
-    <Header />
+    <Header :hasLogo="hasLogo" />
     <slot name="wrapper" />
     <div class="container" v-if="$slots.default || $slots.content">
       <slot />
@@ -18,7 +18,11 @@
 
 <script>
 export default {
-  props: ['background']
+  props: [
+    'background',
+    'backgroundPosition',
+    'hasLogo'
+  ]
 }
 </script>
 
@@ -49,21 +53,11 @@ export default {
   opacity: 0.75;
 
   img {
-    min-width: 100%;
-    min-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center center;
   }
-
-  // &:after {
-  //   content: '';
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   background-color: white;
-  //   opacity:
-  // }
 }
 
 .container {

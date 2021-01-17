@@ -1,5 +1,5 @@
 <template>
-  <Layout background>
+  <Layout background :hasLogo="true">
     <template slot="wrapper">
       <div class="Items">
         <template v-for="(item, index) in items">
@@ -16,18 +16,20 @@
                 activeNavigationIndex === index
             }"
           >
-            <div class="ItemArea" @click="navigate(item.name, index)">
-              <span class="ItemCorner ItemCorner--topleft"></span>
-              <span class="ItemCorner ItemCorner--topright"></span>
-              <span class="ItemCorner ItemCorner--bottomleft"></span>
-              <span class="ItemCorner ItemCorner--bottomright"></span>
-              <div class="bold">{{ capitalize(item.name) }}</div>
+            <div class="ItemArea">
+              <div class="ItemAreaCover" @click="navigate(item.name, index)">
+                <div class="ItemAreaTitle bold">{{ capitalize(item.name) }}</div>
+                <span class="ItemCorner ItemCorner--topleft"></span>
+                <span class="ItemCorner ItemCorner--topright"></span>
+                <span class="ItemCorner ItemCorner--bottomleft"></span>
+                <span class="ItemCorner ItemCorner--bottomright"></span>
+              </div>
+              <picture class="ItemImage">
+                <source media="(min-width: 800px)" :srcset="require(`../assets/images/large/${item.image}.jpg`)" />
+                <source media="(min-width: 640px)" :srcset="require(`../assets/images/medium/${item.image}.jpg`)" />
+                <img :src="require(`../assets/images/small/${item.image}.jpg`)" alt="" />
+              </picture>
             </div>
-            <picture class="ItemImage">
-              <source media="(min-width: 800px)" :srcset="require(`../assets/images/large/${item.image}.jpg`)" />
-              <source media="(min-width: 640px)" :srcset="require(`../assets/images/medium/${item.image}.jpg`)" />
-              <img :src="require(`../assets/images/small/${item.image}.jpg`)" alt="" />
-            </picture>
           </div>
         </template>
       </div>
@@ -53,6 +55,10 @@ export default {
         {
           name: 'video',
           image: 'VideoH'
+        },
+        {
+          name: 'fountain',
+          image: 'FountainH'
         }
       ],
       activeNavigationIndex: null
@@ -74,14 +80,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$size: 60%;
-$padding: 15%;
+$itemAmount: 4;
+$size: 100%;
+$padding: 50%;
+$gutterWidth: 2.5%;
 
-$colWidth: 20%;
-$gutterWidth: 5%;
+$colWidth: ($size - $padding - ($gutterWidth * ($itemAmount - 1))) / $itemAmount;
 
 @function span($colIndex) {
-  @return $padding + ($colIndex * $colWidth) + ($colIndex * $gutterWidth);
+  @return ($padding / 2) + ($colIndex * $colWidth) + ($colIndex * $gutterWidth);
 }
 
 .Items {
@@ -102,13 +109,13 @@ $gutterWidth: 5%;
 .Gutter {
   display: flex;
   flex-basis: $gutterWidth;
+  height: 100%;
 }
 
 .Item {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   width: 100%;
   height: 100%;
   opacity: 1;
@@ -120,7 +127,7 @@ $gutterWidth: 5%;
     opacity: 0;
   }
 
-  &.fade-out-later .ItemArea {
+  &.fade-out-later .ItemAreaCover {
     transition-property: opacity;
     transition-timing-function: ease;
     transition-duration: 0.4s;
@@ -133,13 +140,16 @@ $gutterWidth: 5%;
     $x-padding: 10%;
 
     &:nth-of-type(1) .ItemImage {
-      clip-path: inset(span(0) $x-padding span(2) $x-padding);
+      clip-path: inset(span(0) $x-padding span(3) $x-padding);
     }
     &:nth-of-type(2) .ItemImage {
-      clip-path: inset(span(1) $x-padding span(1) $x-padding);
+      clip-path: inset(span(1) $x-padding span(2) $x-padding);
     }
     &:nth-of-type(3) .ItemImage {
-      clip-path: inset(span(2) $x-padding span(0) $x-padding);
+      clip-path: inset(span(2) $x-padding span(1) $x-padding);
+    }
+    &:nth-of-type(4) .ItemImage {
+      clip-path: inset(span(3) $x-padding span(0) $x-padding);
     }
   }
 
@@ -148,18 +158,37 @@ $gutterWidth: 5%;
     $y-padding: 30%;
 
     &:nth-of-type(1) .ItemImage {
-      clip-path: inset($y-padding span(2) $y-padding span(0));
+      clip-path: inset($y-padding span(3) $y-padding span(0));
     }
     &:nth-of-type(2) .ItemImage {
-      clip-path: inset($y-padding span(1) $y-padding span(1));
+      clip-path: inset($y-padding span(2) $y-padding span(1));
     }
     &:nth-of-type(3) .ItemImage {
-      clip-path: inset($y-padding span(0) $y-padding span(2));
+      clip-path: inset($y-padding span(1) $y-padding span(2));
+    }
+    &:nth-of-type(4) .ItemImage {
+      clip-path: inset($y-padding span(0) $y-padding span(3));
     }
   }
 }
 
 .ItemArea {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ItemAreaTitle {
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  height: 40px;
+}
+
+.ItemAreaCover {
   position: relative;
   display: flex;
   z-index: 200;
@@ -239,10 +268,14 @@ $gutterWidth: 5%;
   overflow: hidden;
 
   img {
-    min-width: 100%;
-    min-height: 100%;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     object-position: center center;
   }
+}
+
+.Item:nth-of-type(4) .ItemImage img {
+  object-position: right 10%;
 }
 </style>

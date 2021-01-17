@@ -7,6 +7,7 @@ import {
   VideoPage,
   GraphicsPage,
   InteractivePage,
+  FountainPage,
   AboutPage,
   PrizesPage,
   ContactPage
@@ -23,6 +24,7 @@ export default new Router({
     { path: '/video', name: 'video', component: VideoPage },
     { path: '/graphics', name: 'graphics', component: GraphicsPage },
     { path: '/interactive', name: 'interactive', component: InteractivePage },
+    { path: '/fountain', name: 'fountain', component: FountainPage },
     { path: '/about', name: 'about', component: AboutPage },
     { path: '/prizes', name: 'prizes', component: PrizesPage },
     { path: '/contact', name: 'contact', component: ContactPage }
