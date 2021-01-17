@@ -83,7 +83,7 @@ export default {
 $itemAmount: 4;
 $size: 100%;
 $padding: 50%;
-$gutterWidth: 2.5%;
+$gutterWidth: 2%;
 
 $colWidth: ($size - $padding - ($gutterWidth * ($itemAmount - 1))) / $itemAmount;
 
