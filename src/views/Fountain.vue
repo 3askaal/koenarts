@@ -1,5 +1,5 @@
 <template>
-  <Layout :background="'FountainH'" :backgroundPosition="'right 10%'" />
+  <Layout background="FountainH" backgroundPosition="right 10%" />
 </template>
 
 <script>

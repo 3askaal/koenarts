@@ -27,7 +27,11 @@
               <picture class="ItemImage">
                 <source media="(min-width: 800px)" :srcset="require(`../assets/images/large/${item.image}.jpg`)" />
                 <source media="(min-width: 640px)" :srcset="require(`../assets/images/medium/${item.image}.jpg`)" />
-                <img :src="require(`../assets/images/small/${item.image}.jpg`)" alt="" />
+                <img
+                  :src="require(`../assets/images/small/${item.image}.jpg`)"
+                  :alt="item.image"
+                  :style="{ objectPosition: item.backgroundPosition }"
+                />
               </picture>
             </div>
           </div>
@@ -46,19 +50,23 @@ export default {
       items: [
         {
           name: 'photography',
-          image: 'PhotographyH'
+          image: 'PhotographyH',
+          backgroundPosition: 'center center'
         },
         {
           name: 'graphics',
-          image: 'GraphicsH'
+          image: 'GraphicsH',
+          backgroundPosition: 'center center'
         },
         {
           name: 'video',
-          image: 'VideoH'
+          image: 'VideoH',
+          backgroundPosition: 'center center'
         },
         {
           name: 'fountain',
-          image: 'FountainH'
+          image: 'FountainH',
+          backgroundPosition: 'right 10%'
         }
       ],
       activeNavigationIndex: null
@@ -182,10 +190,12 @@ $colWidth: ($size - $padding - ($gutterWidth * ($itemAmount - 1))) / $itemAmount
 }
 
 .ItemAreaTitle {
-  position: absolute;
-  top: 0;
-  transform: translateY(-100%);
-  height: 40px;
+  @include breakpoint($bp-m) {
+    position: absolute;
+    top: 0;
+    transform: translateY(-100%);
+    height: 40px;
+  }
 }
 
 .ItemAreaCover {
@@ -271,11 +281,6 @@ $colWidth: ($size - $padding - ($gutterWidth * ($itemAmount - 1))) / $itemAmount
     height: 100%;
     width: 100%;
     object-fit: cover;
-    object-position: center center;
   }
-}
-
-.Item:nth-of-type(4) .ItemImage img {
-  object-position: right 10%;
 }
 </style>
