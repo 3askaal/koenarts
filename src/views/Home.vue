@@ -89,14 +89,54 @@ export default {
 
 <style lang="scss" scoped>
 $itemAmount: 4;
-$size: 100%;
-$padding: 50%;
 $gutterWidth: 2%;
 
-$colWidth: ($size - $padding - ($gutterWidth * ($itemAmount - 1))) / $itemAmount;
+@function span($colIndex, $colWidth, $size) {
+  @return ((100 - $size) / 2) + ($colIndex * $colWidth) + ($colIndex * $gutterWidth);
+}
 
-@function span($colIndex) {
-  @return ($padding / 2) + ($colIndex * $colWidth) + ($colIndex * $gutterWidth);
+@function colWidth($size) {
+  $startSpan: 100 - $size;
+  @return (100% - $startSpan - ($gutterWidth * ($itemAmount - 1))) / $itemAmount;
+}
+
+@mixin getClipPaths($colWidth, $padding, $size, $horizontal: false) {
+  @for $i from 1 through $itemAmount {
+    &:nth-of-type(#{$i}) .ItemImage {
+      @if $horizontal {
+        clip-path: inset(
+          $padding
+          span($itemAmount - $i, $colWidth, $size)
+          $padding
+          span($i - 1, $colWidth, $size)
+        );
+      } @else {
+        clip-path: inset(
+          span($i - 1, $colWidth, $size)
+          $padding
+          span($itemAmount - $i, $colWidth, $size)
+          $padding
+        );
+      }
+    }
+  }
+}
+
+@mixin grid($size, $otherSize, $horizontal: false) {
+  $y-padding: (100 - $otherSize) / 2;
+  $colWidth: colWidth($size);
+
+  flex-basis: $colWidth;
+
+  .ItemAreaCover {
+    @if $horizontal {
+      height: $otherSize;
+    } @else {
+      width: $otherSize;
+    }
+  }
+
+  @include getClipPaths($colWidth, $y-padding, $size, $horizontal);
 }
 
 .Items {
@@ -105,12 +145,10 @@ $colWidth: ($size - $padding - ($gutterWidth * ($itemAmount - 1))) / $itemAmount
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 80%;
+  width: 100%;
 
   @include breakpoint($bp-m) {
     flex-direction: row;
-    width: 100%;
-    height: 80%;
   }
 }
 
@@ -144,39 +182,11 @@ $colWidth: ($size - $padding - ($gutterWidth * ($itemAmount - 1))) / $itemAmount
   }
 
   @include breakpoint(max $bp-m) {
-    flex-basis: $colWidth;
-    $x-padding: 10%;
-
-    &:nth-of-type(1) .ItemImage {
-      clip-path: inset(span(0) $x-padding span(3) $x-padding);
-    }
-    &:nth-of-type(2) .ItemImage {
-      clip-path: inset(span(1) $x-padding span(2) $x-padding);
-    }
-    &:nth-of-type(3) .ItemImage {
-      clip-path: inset(span(2) $x-padding span(1) $x-padding);
-    }
-    &:nth-of-type(4) .ItemImage {
-      clip-path: inset(span(3) $x-padding span(0) $x-padding);
-    }
+    @include grid(40%, 80%)
   }
 
   @include breakpoint($bp-m) {
-    flex-basis: $colWidth;
-    $y-padding: 30%;
-
-    &:nth-of-type(1) .ItemImage {
-      clip-path: inset($y-padding span(3) $y-padding span(0));
-    }
-    &:nth-of-type(2) .ItemImage {
-      clip-path: inset($y-padding span(2) $y-padding span(1));
-    }
-    &:nth-of-type(3) .ItemImage {
-      clip-path: inset($y-padding span(1) $y-padding span(2));
-    }
-    &:nth-of-type(4) .ItemImage {
-      clip-path: inset($y-padding span(0) $y-padding span(3));
-    }
+    @include grid(50%, 40%, true)
   }
 }
 
